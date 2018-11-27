@@ -42,19 +42,12 @@ table td {
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
         if(isset($_REQUEST['fname']) && 
-<<<<<<< HEAD
-        isset($_REQUEST['lname']) && 
-        isset($_REQUEST['email']) && 
-        isset($_REQUEST['username']) &&
-        isset($_REQUEST['password']))
-=======
            isset($_REQUEST['lname']) && 
            isset($_REQUEST['email']) &&
            isset($_REQUEST['phone']) && 
            isset($_REQUEST['password']) &&
            isset($_REQUEST['card']) &&
            isset($_REQUEST['billing']))
->>>>>>> parent of ea2b886... changes for Jonathan
         {
 
             $username = sanitizeString($_REQUEST['username']);
@@ -66,14 +59,6 @@ table td {
                 $newUser->Email = sanitizeString($_REQUEST['email']);
                 $newUser->Phone = sanitizeString($_REQUEST['phone']);
                 $newUser->PasswordToken = SaltPswd(sanitizeString($_REQUEST['password']));
-<<<<<<< HEAD
-               // $isnewUsersSignedup = $newUser->CreateAccount();
-
-                $_SESSION['FirstName'] = $newUser->FirstName;
-                $_SESSION['LastName'] = $newUser->LastName;
-                $_SESSION['Email'] = $newUser->Email;
-
-=======
                 $newUser->CardToken = SaltCard(sanitizeString($_REQUEST['card']));
                 $newUser->BillingAddr = sanitizeString($_REQUEST['billing']);
                 $isnewUsersSignedup = $newUser->CreateAccount();
@@ -85,7 +70,6 @@ table td {
                 $_SESSION['pswd_token'] = $newUser->PasswordToken;//$token;
                 $_SESSION['card_token'] = $newUser->PasswordToken;//$token;
                 $_SESSION['billingAddr'] = $newUser->PasswordToken;
->>>>>>> parent of ea2b886... changes for Jonathan
                 if(isset($_SESSION['isManager']))
                 {
                     routeUser();
@@ -190,5 +174,7 @@ table td {
 </form>
 
 <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
-    <h1 class="w3-margin w3-xlarge">Quote of the day:  Live Life</h1>
+    <h1 class="w3-margin w3-xlarge">Quote of the day:  i Live Life</h1>
 </div>
+
+ 
