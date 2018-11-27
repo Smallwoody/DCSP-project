@@ -5,11 +5,8 @@ class user
     public $LastName = "";
     public $UserName = "";
     public $Email = "";
-    public $Phone = "";
     public $PasswordToken = "";
     public $isManager = false;
-    public $CardInfo = "";
-    public $BillingAddr = "";
 
 	function __construct($foundUserName)
 	{
@@ -69,8 +66,6 @@ class user
                         `Email`,
                         `Phone`,
                         `Password`
-                        `CardInfo`,
-                        `BillingAddr`
                     )
                   VALUES (
                       '$this->FirstName',
