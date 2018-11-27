@@ -38,9 +38,10 @@ table td {
     $UserNameTaken = 0;
     $isnewUsersSignedup = 0;
     $emptyfield = 0;
+    $successfulRun = 0;
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']))
+        if(isset($_REQUEST['fname']) && isset($_REQUEST['lname']) && isset($_REQUEST['email']) && isset($_REQUEST['username']) && isset($_REQUEST['password']))
         {
 
             $username = sanitizeString($_REQUEST['username']);
@@ -62,6 +63,7 @@ table td {
                 {
                     routeUser();
                 }
+                $successfulRun = 1;
             }
 
             else{
@@ -107,19 +109,19 @@ table td {
           <table class="w3-table">
                 <tr>
                     <td><label>First Name: </label></td>
-                    <td><input type="text" name="fname" value="<?php $newUser->FirstName ?>"></td>
+                    <td><input type="text" name="fname" value="<?php echo $newUser->FirstName ?>"></td>
                 </tr>
                 <tr>
                     <td><label>Last Name: </label></td>
-                    <td><input type="text" name="lname" value=<?php  $newUser->LastName ?>></td>
+                    <td><input type="text" name="lname" value=<?php echo $newUser->LastName ?>></td>
                 </tr>
                 <tr>
                     <td><label>User Name: </label></td>
-                    <td><input type="text" name="username" value=<?php $newUser->UserName ?>></td>
+                    <td><input type="text" name="lname" value=<?php echo $newUser->UserName ?>></td>
                 </tr>
                 <tr>
                     <td><label>Email: </label></td>
-                    <td><input type="text" name="email" value="<?php echo $newUser->Email; ?>"></td>
+                    <td><input type="text" name="username" value="<?php echo $newUser->Email; ?>"></td>
                 </tr>
                 <tr>
                     <td><label>Password: </label></td>
@@ -135,6 +137,9 @@ table td {
 
                         if ($emptyfield){
                             echo '<div class="w3-container w3-red">Please fill out all fields</div>';
+                        }
+                        if($successfulRun){
+                            header('Location: login.php');
                         }
                     ?>
                 </h5>
