@@ -38,7 +38,6 @@ table td {
     $UserNameTaken = 0;
     $isnewUsersSignedup = 0;
     $emptyfield = 0;
-    $successfulRun = 0;
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
         if(isset($_REQUEST['fname']) && 
@@ -74,14 +73,11 @@ table td {
                 {
                     routeUser();
                 }
-                //$successfulRun = 1;
             }
-
             else{
                 $UserNameTaken = True;
             }
         }
-
         else{
             $emptyfield = 1;
         }
@@ -122,15 +118,15 @@ table td {
                 </tr>
                 <tr>
                     <td><label>Last Name: </label></td>
-                    <td><input type="text" name="lname" value="<?php $newUser->LastName ?>"></td>
+                    <td><input type="text" name="lname" value=<?php  $newUser->LastName ?>></td>
                 </tr>
                 <tr>
                     <td><label>User Name: </label></td>
-                    <td><input type="text" name="username" value="<?php $newUser->UserName ?>"></td>
+                    <td><input type="text" name="lname" value=<?php  $newUser->UserName ?>></td>
                 </tr>
                 <tr>
                     <td><label>Email: </label></td>
-                    <td><input type="text" name="email" value="<?php echo $newUser->Email; ?>"></td>
+                    <td><input type="text" name="username" value="<?php echo $newUser->Email; ?>"></td>
                 </tr>
                 <tr>
                     <td><label>Phone: </label></td>
@@ -138,7 +134,7 @@ table td {
                 </tr>
                 <tr>
                     <td><label>Password: </label></td>
-                    <td><input type="password" name="password" <?php $password ?>></td>
+                    <td><input type="password" name="password" value=<?php $password ?>></td>
                 </tr>
                 <tr>
                     <td><label>Card Information: </label></td>
@@ -155,13 +151,9 @@ table td {
                         if ($UserNameTaken){
                             echo '<div class="w3-container w3-red">Username taken please try another</div>';
                         }
-
                         if ($emptyfield){
                             echo '<div class="w3-container w3-red">Please fill out all fields</div>';
                         }
-                        /*if($successfulRun){
-                            header('Location: loginPage.php');
-                        }*/
                     ?>
                 </h5>
             </div>
@@ -174,7 +166,7 @@ table td {
 </form>
 
 <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
-    <h1 class="w3-margin w3-xlarge">Quote of the day:  i Live Life</h1>
+    <h1 class="w3-margin w3-xlarge">Quote of the day:  Live Life</h1>
 </div>
 
- 
+
