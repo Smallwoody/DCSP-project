@@ -117,11 +117,11 @@ table td {
                 </tr>
                 <tr>
                     <td><label>Last Name: </label></td>
-                    <td><input type="text" name="lname" value="<?php echo $newUser->LastName ?>""></td>
+                    <td><input type="text" name="lname" value="<?php echo $newUser->LastName ?>"></td>
                 </tr>
                 <tr>
                     <td><label>User Name: </label></td>
-                    <td><input type="text" name="username" value="<?php echo $newUser->UserName ?>""></td>
+                    <td><input type="text" name="username" value="<?php echo $newUser->UserName ?>"></td>
                 </tr>
                 <tr>
                     <td><label>Email: </label></td>
@@ -129,7 +129,7 @@ table td {
                 </tr>
                 <tr>
                     <td><label>Password: </label></td>
-                    <td><input type="password" name="password" value="<?php $password ?>""></td>
+                    <td><input type="password" name="password" value="<?php $password ?>"></td>
                 </tr>
             </table>
             <p><input class="w3-button w3-blue-grey" type="submit" value="Sign Up"></p>
