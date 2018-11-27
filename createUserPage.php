@@ -38,52 +38,49 @@ table td {
     $UserNameTaken = 0;
     $isnewUsersSignedup = 0;
     $emptyfield = 0;
+    $successfulRun = 0;
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
-<<<<<<< HEAD
-        if(isset($_REQUEST['fname']) && 
-           isset($_REQUEST['lname']) && 
-           isset($_REQUEST['email']) &&
-           isset($_REQUEST['phone']) && 
-           isset($_REQUEST['password']) &&
-           isset($_REQUEST['card']) &&
-           isset($_REQUEST['billing']))
-=======
-        if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']))
->>>>>>> parent of 36a59ea... Merge branch 'master' of https://github.com/Smallwoody/DCSP-project
+        if(isset($_REQUEST['submit']))
         {
-
-            $username = sanitizeString($_REQUEST['username']);
-            $newUser = new user($username);
-            if($newUser->CheckUserName())
+            if($_REQUEST['fname'] != "" && 
+            $_REQUEST['lname'] != "" && 
+            $_REQUEST['email'] != "" && 
+            $_REQUEST['username'] != "" && 
+            $_REQUEST['password'] != "")
             {
-                $newUser->FirstName = sanitizeString($_REQUEST['fname']);
-                $newUser->LastName = sanitizeString($_REQUEST['lname']);
-                $newUser->Email = sanitizeString($_REQUEST['email']);
-                $newUser->Phone = sanitizeString($_REQUEST['phone']);
-                $newUser->PasswordToken = SaltPswd(sanitizeString($_REQUEST['password']));
-                $newUser->CardToken = SaltCard(sanitizeString($_REQUEST['card']));
-                $newUser->BillingAddr = sanitizeString($_REQUEST['billing']);
-                $isnewUsersSignedup = $newUser->CreateAccount();
-                
-                $_SESSION['FirstName'] = $newUser->FirstName;
-                $_SESSION['LastName'] = $newUser->LastName;
-                $_SESSION['Email'] = $newUser->Email;
-                $_SESSION['Phone'] = $newUser->Phone;
-                $_SESSION['pswd_token'] = $newUser->PasswordToken;//$token;
-                $_SESSION['card_token'] = $newUser->PasswordToken;//$token;
-                $_SESSION['billingAddr'] = $newUser->PasswordToken;
-                if(isset($_SESSION['isManager']))
+
+                $username = sanitizeString($_REQUEST['username']);
+                $newUser = new user($username);
+                if($newUser->CheckUserName())
                 {
+                    $newUser->FirstName = sanitizeString($_REQUEST['fname']);
+                    $newUser->LastName = sanitizeString($_REQUEST['lname']);
+                    $newUser->Email = sanitizeString($_REQUEST['email']);
+                    $newUser->PasswordToken = SaltPswd(sanitizeString($_REQUEST['password']));
+                    //edit this in the other file
+                    $isnewUsersSignedup = $newUser->CreateAccount();
+                
+                    $_SESSION['FirstName'] = $newUser->FirstName;
+                    $_SESSION['LastName'] = $newUser->LastName;
+                    $_SESSION['Email'] = $newUser->Email;
+                    $_SESSION['pswd_token'] = $newUser->PasswordToken;//$token;
+                   
+                    if(isset($_SESSION['isManager']))
+                    {
                     routeUser();
+                    }
+                $successfulRun = 1;
+                }
+                else
+                {
+                    $UserNameTaken = True;
                 }
             }
-            else{
-                $UserNameTaken = True;
+            else
+            {
+                $emptyfield = 1;
             }
-        }
-        else{
-            $emptyfield = 1;
         }
     }
     function sanitizeString($var)
@@ -108,63 +105,30 @@ table td {
         $salt2 = "pg!@";
         return hash('ripemd128', "$salt1$p$salt2");
     }
-    function SaltCard($p)
-    {
-        $salt1 = "abcke";
-        $salt2 = "!k@t";
-        return hash('ripemd128', "$salt1$p$salt2");
-    }
 ?>
           <table class="w3-table">
                 <tr>
                     <td><label>First Name: </label></td>
-                    <td><input type="text" name="fname" value="<?php $newUser->FirstName ?>"></td>
+                    <td><input type="text" name="fname" value="<?php echo $_REQUEST['fname']; ?>"></td>
                 </tr>
                 <tr>
                     <td><label>Last Name: </label></td>
-                    <td><input type="text" name="lname" value=<?php  $newUser->LastName ?>></td>
+                    <td><input type="text" name="lname" value="<?php echo $_REQUEST['lname']; ?>"></td>
                 </tr>
                 <tr>
                     <td><label>User Name: </label></td>
-<<<<<<< HEAD
-                    <td><input type="text" name="username" value=<?php  $newUser->UserName ?>></td>
-=======
-                    <td><input type="text" name="username" value=<?php $newUser->UserName ?>></td>
->>>>>>> parent of 36a59ea... Merge branch 'master' of https://github.com/Smallwoody/DCSP-project
+                    <td><input type="text" name="username" value="<?php echo $_REQUEST['username']; ?>"></td>
                 </tr>
                 <tr>
                     <td><label>Email: </label></td>
-                    <td><input type="text" name="email" value="<?php echo $newUser->Email; ?>"></td>
-<<<<<<< HEAD
-                </tr>
-                <tr>
-                    <td><label>Phone: </label></td>
-                    <td><input type="text" name="phone" value=<?php $newUser->Phone ?>></td>
-=======
->>>>>>> parent of 36a59ea... Merge branch 'master' of https://github.com/Smallwoody/DCSP-project
+                    <td><input type="text" name="email" value="<?php echo $_REQUEST['email']; ?>"></td>
                 </tr>
                 <tr>
                     <td><label>Password: </label></td>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    <td><input type="password" name="password" value=<?php $password ?>></td>
-                </tr>
-                <tr>
-                    <td><label>Card Information: </label></td>
-                    <td><input type="text" name="card" value=<?php $newUser->CardInfo ?>></td>
-                </tr>
-                <tr>
-                    <td><label>Billing Address: </label></td>
-                    <td><input type="text" name="billing" value=<?php $newUser->BillingAddr ?>></td>
-=======
-                    <td><input type="password" name="password" value="<?php $password ?>"></td>
->>>>>>> parent of 3a9426d... opaqwj
-=======
-                    <td><input type="password" name="password" value="<?php $password ?>"></td>
->>>>>>> parent of 062a494... Updated
+                    <td><input type="password" name="password"></td>
                 </tr>
             </table>
-            <p><input class="w3-button w3-blue-grey" type="submit" value="Sign Up"></p>
+            <p><input class="w3-button w3-blue-grey" type="submit" name="submit" value="Sign Up"></p>
             <div class="w3-container">
                 <h5><?php
                         if ($UserNameTaken){
@@ -173,15 +137,10 @@ table td {
                         if ($emptyfield){
                             echo '<div class="w3-container w3-red">Please fill out all fields</div>';
                         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
                         if($successfulRun){
                             header('Location: loginPage.php');
                         }
->>>>>>> parent of 062a494... Updated
-=======
->>>>>>> parent of 36a59ea... Merge branch 'master' of https://github.com/Smallwoody/DCSP-project
                     ?>
                 </h5>
             </div>
@@ -196,5 +155,3 @@ table td {
 <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
     <h1 class="w3-margin w3-xlarge">Quote of the day:  Live Life</h1>
 </div>
-
-

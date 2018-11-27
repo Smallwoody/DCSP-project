@@ -1,7 +1,7 @@
 <?php
 $error = $userName = $password = "";
 require_once 'login.php';
-//require_once 'User.php';
+require_once 'User.php';
 session_start();
 if(isset($_SESSION['isAdmin']))
 {
@@ -10,21 +10,31 @@ if(isset($_SESSION['isAdmin']))
 
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']))
 {
-    if(isset($_POST['username'])) $username = sanitizeString($_POST['username']);
-    if(isset($_POST['password'])) $password = sanitizeString($_POST['password']);
+    if(isset($_POST['username']))
+    { 
+        $username = sanitizeString($_POST['username']);
+    }
+
+    if(isset($_POST['password'])) 
+    {
+        $password = sanitizeString($_POST['password']);
+    }
 
     $token = SaltPswd($password);
+
     $mysqli = new mysqli($hn, $un, $pw, $db);
     if ($mysqli->connect_error) {
         die('Connect Error: ' . $mysqli->connect_error);
     }
 
    $query = "SELECT *
-           from Users
-           where UserName = '$username' and
+           FROM users
+           WHERE Username = '$username' AND
            Password = '$token'";
+
     //echo $query;
     $result = $mysqli->query($query);
+
     //echo $result;
     $user = $result->fetch_array(MYSQLI_ASSOC);
     $result->close();
@@ -32,18 +42,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']))
 
      if($user != "" && $user['Password']== $token)
      {
-         //session_start();
+         
          $_SESSION['username'] = $username;
          $_SESSION['userID'] = $user['UserID'];
          $_SESSION['pswd_token'] = $user['Password'];//$token;
          $_SESSION['FirstName'] = $user['FirstName'];
          $_SESSION['LastName'] = $user['LastName'];
          $_SESSION['isManager'] = $user['isManager'];
-         $_SESSION['card_token'] = $user['CardInfo'];
-         $_SESSION['billingAddr'] = $user['BillingAddr'];
          $user_class = new user($username);
-         $user_class->GetInfo($username,$user['Password']);
-         routeUser();
+        // $user_class->GetInfo($username,$user['Password']);
+
+        if($_SESSION['isManager'] == '1')
+        {
+        header('Location: admin_page.php');
+        exit();
+        }
+
      }
      else
      {
@@ -58,15 +72,7 @@ function sanitizeString($var)
     $var = htmlentities($var);
     return $var;
   }
-function routeUser()
-{
-    //session_start();
-    if(isset($_SESSION['isManager'] ))
-    {
-        header('Location: user_page.php');
-        exit();
-    }
-}
+
 
 function SaltPswd($p)
 {

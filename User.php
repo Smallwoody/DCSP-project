@@ -3,27 +3,24 @@ class user
 {
     public $FirstName = "";
     public $LastName = "";
-    public $UserName = "";
+    public $Username = "";
     public $Email = "";
-    public $Phone = "";
     public $PasswordToken = "";
     public $isManager = false;
-    public $CardInfo = "";
-    public $BillingAddr = "";
 
-	function __construct($foundUserName)
+	function __construct($foundUsername)
 	{
-		$this->UserName = $foundUserName;
+		$this->Username = $foundUsername;
 	}
 
-    function CheckUserName()
+    function CheckUsername()
     {
         require "login.php";
         $conn = new mysqli($hn, $un, $pw, $db);
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
         }
-        $query  = "SELECT UserName FROM users where UserName = '$this->UserName'";
+        $query  = "SELECT Username FROM users where Username = '$this->Username'";
         $results = $conn->query($query);
         if(mysqli_num_rows($results) == 0){
             $returnResult = true; //no other users with that email
@@ -39,14 +36,14 @@ class user
 
         return  $returnResult;
     }
-    // function DeleteAccount($UserToBeRemoved)
+    /*  function DeleteAccount($UserToBeRemoved)
     // {
     //     require 'login.php';
     //     $conn = new mysqli($hn, $un, $pw, $db);
     //     if (!$conn) {
     //         die("Connection failed: " . mysqli_connect_error());
     //     }
-    //     $query = "UPDATE `Users` SET `AccountStatus`='Removed' WHERE Users.UserName = '$UserToBeRemoved'";
+    //     $query = "UPDATE `users` SET `AccountStatus`='Removed' WHERE users.Username = '$UserToBeRemoved'";
     //     $result = $conn->query($query);
     //     $conn->close();
     //     if($result)
@@ -54,6 +51,7 @@ class user
     //     else 
     //         return "Error Deleting User";
     // }
+    */
     function CreateAccount()
 	{
         require 'login.php';
@@ -62,26 +60,22 @@ class user
 
             die("Connection failed: " . mysqli_connect_error());
         }
-        $query = "INSERT INTO `Users`
+        $query = "INSERT INTO `users`
                     (
+                        `Username`,
                         `FirstName`,
                         `LastName`,
                         `Email`,
-                        `Phone`,
-                        `Password`
-                        `CardInfo`,
-                        `BillingAddr`
+                        `Password`,
+                        `isManager`
                     )
                   VALUES (
+                      '$this->Username',
                       '$this->FirstName',
                       '$this->LastName',
-                      '$this->UserName',
                       '$this->Email',
-                      '$this->Phone',
                       '$this->PasswordToken',
-                      '$this->CardToken',
-                      '$this->BillingAddr'
-                        )";
+                      '0')";
         if ($conn->query($query) == True){
             $returnResult = true; //no other users with that name
         }
@@ -101,22 +95,21 @@ class user
             die('Connect Error: ' . $mysqli->connect_error);
         }
 
-        $query = "select *
-                    from Users
-                    where UserName = '$username' and
+        $query = "SELECT *
+                    FROM users
+                    WHERE Username = '$username' AND
                     Password = '$pwtoken'";
 
         $result = $mysqli->query($query);
         //echo $result;
         $row = $result->fetch_array(MYSQLI_ASSOC);
 
-        if( $row["UserName"] != "" && $row['Password']== $pwtoken)
+        if( $row["Username"] != "" && $row['Password']== $pwtoken)
         {
             $this->FirstName = $row["FirstName"];
             $this->LastName = $row["LastName"];
-            $this->UserName = $row["UserName"];
+            $this->Username = $row["Username"];
             $this->Email = $row["Email"];
-            $this->Phone = $row["Phone"];
             $this->PasswordToken = $row["Password"];
             $this->isManager = $row["isManager"];
             $result->close();
