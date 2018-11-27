@@ -61,7 +61,6 @@ table td {
                 $_SESSION['FirstName'] = $newUser->FirstName;
                 $_SESSION['LastName'] = $newUser->LastName;
                 $_SESSION['Email'] = $newUser->Email;
-                $_SESSION['Phone'] = $newUser->Phone;
 
                 if(isset($_SESSION['isManager']))
                 {
