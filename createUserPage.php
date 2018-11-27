@@ -61,7 +61,6 @@ table td {
                 $_SESSION['FirstName'] = $newUser->FirstName;
                 $_SESSION['LastName'] = $newUser->LastName;
                 $_SESSION['Email'] = $newUser->Email;
-                $_SESSION['Phone'] = $newUser->Phone;
 
                 if(isset($_SESSION['isManager']))
                 {
@@ -142,9 +141,9 @@ table td {
                         if ($emptyfield){
                             echo '<div class="w3-container w3-red">Please fill out all fields</div>';
                         }
-                        if($successfulRun){
+                        /*if($successfulRun){
                             header('Location: loginPage.php');
-                        }
+                        }*/
                     ?>
                 </h5>
             </div>
