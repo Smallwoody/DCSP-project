@@ -115,11 +115,11 @@ table td {
                 </tr>
                 <tr>
                     <td><label>User Name: </label></td>
-                    <td><input type="text" name="lname" value=<?php  $newUser->UserName ?>></td>
+                    <td><input type="text" name="username" value=<?php  $newUser->UserName ?>></td>
                 </tr>
                 <tr>
                     <td><label>Email: </label></td>
-                    <td><input type="text" name="username" value="<?php echo $newUser->Email; ?>"></td>
+                    <td><input type="text" name="email" value="<?php echo $newUser->Email; ?>"></td>
                 </tr>
                 <tr>
                     <td><label>Password: </label></td>
