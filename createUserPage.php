@@ -41,7 +41,11 @@ table td {
     $successfulRun = 0;
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        if(isset($_REQUEST['fname']) && isset($_REQUEST['lname']) && isset($_REQUEST['email']) && isset($_REQUEST['username']) && isset($_REQUEST['password']))
+        if(isset($_REQUEST['fname']) && 
+        isset($_REQUEST['lname']) && 
+        isset($_REQUEST['email']) && 
+        isset($_REQUEST['username']) &&
+        isset($_REQUEST['password']))
         {
 
             $username = sanitizeString($_REQUEST['username']);
@@ -63,7 +67,7 @@ table td {
                 {
                     routeUser();
                 }
-                $successfulRun = 1;
+                //$successfulRun = 1;
             }
 
             else{
