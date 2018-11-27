@@ -56,7 +56,7 @@ table td {
                 $newUser->LastName = sanitizeString($_REQUEST['lname']);
                 $newUser->Email = sanitizeString($_REQUEST['email']);
                 $newUser->PasswordToken = SaltPswd(sanitizeString($_REQUEST['password']));
-                $isnewUsersSignedup = $newUser->CreateAccount();
+               // $isnewUsersSignedup = $newUser->CreateAccount();
 
                 $_SESSION['FirstName'] = $newUser->FirstName;
                 $_SESSION['LastName'] = $newUser->LastName;
@@ -112,15 +112,15 @@ table td {
           <table class="w3-table">
                 <tr>
                     <td><label>First Name: </label></td>
-                    <td><input type="text" name="fname" value="<?php echo $newUser->FirstName ?>"></td>
+                    <td><input type="text" name="fname" value="<?php $newUser->FirstName ?>"></td>
                 </tr>
                 <tr>
                     <td><label>Last Name: </label></td>
-                    <td><input type="text" name="lname" value="<?php echo $newUser->LastName ?>"></td>
+                    <td><input type="text" name="lname" value="<?php $newUser->LastName ?>"></td>
                 </tr>
                 <tr>
                     <td><label>User Name: </label></td>
-                    <td><input type="text" name="username" value="<?php echo $newUser->UserName ?>"></td>
+                    <td><input type="text" name="username" value="<?php $newUser->UserName ?>"></td>
                 </tr>
                 <tr>
                     <td><label>Email: </label></td>
@@ -128,7 +128,7 @@ table td {
                 </tr>
                 <tr>
                     <td><label>Password: </label></td>
-                    <td><input type="password" name="password"></td>
+                    <td><input type="password" name="password" <?php $password ?>></td>
                 </tr>
             </table>
             <p><input class="w3-button w3-blue-grey" type="submit" value="Sign Up"></p>
