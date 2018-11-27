@@ -43,10 +43,10 @@ CREATE TABLE `packageItems` (
 `PackageID` INT(10) NOT NULL , 
 `ServiceID` INT(10) NOT NULL ) ENGINE = InnoDB;
 
-ALTER TABLE `requestitems`
+ALTER TABLE `requestItems`
 ADD FOREIGN KEY (RequestID) REFERENCES requests(RequestID);
 
-ALTER TABLE `requestitems`
+ALTER TABLE `requestItems`
 ADD FOREIGN KEY (ServiceID) REFERENCES services(ServiceID);
 
 ALTER TABLE `requests`
