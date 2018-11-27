@@ -135,6 +135,7 @@ table td {
                 <tr>
                     <td><label>Password: </label></td>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <td><input type="password" name="password" value=<?php $password ?>></td>
                 </tr>
                 <tr>
@@ -147,6 +148,9 @@ table td {
 =======
                     <td><input type="password" name="password" value="<?php $password ?>"></td>
 >>>>>>> parent of 3a9426d... opaqwj
+=======
+                    <td><input type="password" name="password" value="<?php $password ?>"></td>
+>>>>>>> parent of 062a494... Updated
                 </tr>
             </table>
             <p><input class="w3-button w3-blue-grey" type="submit" value="Sign Up"></p>
@@ -158,6 +162,12 @@ table td {
                         if ($emptyfield){
                             echo '<div class="w3-container w3-red">Please fill out all fields</div>';
                         }
+<<<<<<< HEAD
+=======
+                        if($successfulRun){
+                            header('Location: loginPage.php');
+                        }
+>>>>>>> parent of 062a494... Updated
                     ?>
                 </h5>
             </div>
