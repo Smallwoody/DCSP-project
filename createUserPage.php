@@ -115,7 +115,7 @@ table td {
                 </tr>
                 <tr>
                     <td><label>User Name: </label></td>
-                    <td><input type="text" name="username" value=<?php  $newUser->UserName ?>></td>
+                    <td><input type="text" name="username" value=<?php $newUser->UserName ?>></td>
                 </tr>
                 <tr>
                     <td><label>Email: </label></td>
