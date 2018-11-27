@@ -40,11 +40,7 @@ table td {
     $emptyfield = 0;
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        if(isset($_REQUEST['fname']) && 
-           isset($_REQUEST['lname']) && 
-           isset($_REQUEST['email']) &&
-           isset($_REQUEST['username']) && 
-           isset($_REQUEST['password']))
+        if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']))
         {
 
             $username = sanitizeString($_REQUEST['username']);
@@ -67,10 +63,12 @@ table td {
                     routeUser();
                 }
             }
+
             else{
                 $UserNameTaken = True;
             }
         }
+
         else{
             $emptyfield = 1;
         }
@@ -134,6 +132,7 @@ table td {
                         if ($UserNameTaken){
                             echo '<div class="w3-container w3-red">Username taken please try another</div>';
                         }
+
                         if ($emptyfield){
                             echo '<div class="w3-container w3-red">Please fill out all fields</div>';
                         }
