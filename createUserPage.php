@@ -134,6 +134,7 @@ table td {
                 </tr>
                 <tr>
                     <td><label>Password: </label></td>
+<<<<<<< HEAD
                     <td><input type="password" name="password" value=<?php $password ?>></td>
                 </tr>
                 <tr>
@@ -143,6 +144,9 @@ table td {
                 <tr>
                     <td><label>Billing Address: </label></td>
                     <td><input type="text" name="billing" value=<?php $newUser->BillingAddr ?>></td>
+=======
+                    <td><input type="password" name="password" value="<?php $password ?>"></td>
+>>>>>>> parent of 3a9426d... opaqwj
                 </tr>
             </table>
             <p><input class="w3-button w3-blue-grey" type="submit" value="Sign Up"></p>
