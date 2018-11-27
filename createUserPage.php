@@ -43,10 +43,8 @@ table td {
         if(isset($_REQUEST['fname']) && 
            isset($_REQUEST['lname']) && 
            isset($_REQUEST['email']) &&
-           isset($_REQUEST['phone']) && 
-           isset($_REQUEST['password']) &&
-           isset($_REQUEST['card']) &&
-           isset($_REQUEST['billing']))
+           isset($_REQUEST['username']) && 
+           isset($_REQUEST['password']))
         {
 
             $username = sanitizeString($_REQUEST['username']);
@@ -56,19 +54,14 @@ table td {
                 $newUser->FirstName = sanitizeString($_REQUEST['fname']);
                 $newUser->LastName = sanitizeString($_REQUEST['lname']);
                 $newUser->Email = sanitizeString($_REQUEST['email']);
-                $newUser->Phone = sanitizeString($_REQUEST['phone']);
                 $newUser->PasswordToken = SaltPswd(sanitizeString($_REQUEST['password']));
-                $newUser->CardToken = SaltCard(sanitizeString($_REQUEST['card']));
-                $newUser->BillingAddr = sanitizeString($_REQUEST['billing']);
                 $isnewUsersSignedup = $newUser->CreateAccount();
                 
                 $_SESSION['FirstName'] = $newUser->FirstName;
                 $_SESSION['LastName'] = $newUser->LastName;
                 $_SESSION['Email'] = $newUser->Email;
                 $_SESSION['Phone'] = $newUser->Phone;
-                $_SESSION['pswd_token'] = $newUser->PasswordToken;//$token;
-                $_SESSION['card_token'] = $newUser->PasswordToken;//$token;
-                $_SESSION['billingAddr'] = $newUser->PasswordToken;
+
                 if(isset($_SESSION['isManager']))
                 {
                     routeUser();
@@ -89,6 +82,7 @@ table td {
         $var = htmlentities($var);
         return $var;
     }
+
     function routeUser()
     {
         if(isset($_SESSION['isAdmin'] ))
@@ -104,6 +98,7 @@ table td {
         $salt2 = "pg!@";
         return hash('ripemd128', "$salt1$p$salt2");
     }
+
     function SaltCard($p)
     {
         $salt1 = "abcke";
@@ -129,20 +124,8 @@ table td {
                     <td><input type="text" name="username" value="<?php echo $newUser->Email; ?>"></td>
                 </tr>
                 <tr>
-                    <td><label>Phone: </label></td>
-                    <td><input type="text" name="phone" value=<?php $newUser->Phone ?>></td>
-                </tr>
-                <tr>
                     <td><label>Password: </label></td>
                     <td><input type="password" name="password" value=<?php $password ?>></td>
-                </tr>
-                <tr>
-                    <td><label>Card Information: </label></td>
-                    <td><input type="text" name="card" value=<?php $newUser->CardInfo ?>></td>
-                </tr>
-                <tr>
-                    <td><label>Billing Address: </label></td>
-                    <td><input type="text" name="billing" value=<?php $newUser->BillingAddr ?>></td>
                 </tr>
             </table>
             <p><input class="w3-button w3-blue-grey" type="submit" value="Sign Up"></p>
