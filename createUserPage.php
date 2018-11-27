@@ -129,7 +129,7 @@ table td {
                 </tr>
                 <tr>
                     <td><label>Password: </label></td>
-                    <td><input type="password" name="password" value="<?php $password ?>"></td>
+                    <td><input type="password" name="password"></td>
                 </tr>
             </table>
             <p><input class="w3-button w3-blue-grey" type="submit" value="Sign Up"></p>
@@ -142,9 +142,9 @@ table td {
                         if ($emptyfield){
                             echo '<div class="w3-container w3-red">Please fill out all fields</div>';
                         }
-                        if($successfulRun){
+                        /*if($successfulRun){
                             header('Location: loginPage.php');
-                        }
+                        }*/
                     ?>
                 </h5>
             </div>
