@@ -129,7 +129,7 @@ table td {
                 </tr>
                 <tr>
                     <td><label>Password: </label></td>
-                    <td><input type="password" name="password" value="<?php $password ?>"></td>
+                    <td><input type="password" name="password"></td>
                 </tr>
             </table>
             <p><input class="w3-button w3-blue-grey" type="submit" value="Sign Up"></p>
