@@ -40,6 +40,7 @@ table td {
     $emptyfield = 0;
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
+<<<<<<< HEAD
         if(isset($_REQUEST['fname']) && 
            isset($_REQUEST['lname']) && 
            isset($_REQUEST['email']) &&
@@ -47,6 +48,9 @@ table td {
            isset($_REQUEST['password']) &&
            isset($_REQUEST['card']) &&
            isset($_REQUEST['billing']))
+=======
+        if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']))
+>>>>>>> parent of 36a59ea... Merge branch 'master' of https://github.com/Smallwoody/DCSP-project
         {
 
             $username = sanitizeString($_REQUEST['username']);
@@ -122,15 +126,22 @@ table td {
                 </tr>
                 <tr>
                     <td><label>User Name: </label></td>
+<<<<<<< HEAD
                     <td><input type="text" name="username" value=<?php  $newUser->UserName ?>></td>
+=======
+                    <td><input type="text" name="username" value=<?php $newUser->UserName ?>></td>
+>>>>>>> parent of 36a59ea... Merge branch 'master' of https://github.com/Smallwoody/DCSP-project
                 </tr>
                 <tr>
                     <td><label>Email: </label></td>
                     <td><input type="text" name="email" value="<?php echo $newUser->Email; ?>"></td>
+<<<<<<< HEAD
                 </tr>
                 <tr>
                     <td><label>Phone: </label></td>
                     <td><input type="text" name="phone" value=<?php $newUser->Phone ?>></td>
+=======
+>>>>>>> parent of 36a59ea... Merge branch 'master' of https://github.com/Smallwoody/DCSP-project
                 </tr>
                 <tr>
                     <td><label>Password: </label></td>
@@ -163,11 +174,14 @@ table td {
                             echo '<div class="w3-container w3-red">Please fill out all fields</div>';
                         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                         if($successfulRun){
                             header('Location: loginPage.php');
                         }
 >>>>>>> parent of 062a494... Updated
+=======
+>>>>>>> parent of 36a59ea... Merge branch 'master' of https://github.com/Smallwoody/DCSP-project
                     ?>
                 </h5>
             </div>
