@@ -43,12 +43,12 @@ CREATE TABLE `packageItems` (
 `PackageID` INT(10) NOT NULL , 
 `ServiceID` INT(10) NOT NULL ) ENGINE = InnoDB;
 
-ALTER TABLE requestitems ADD FOREIGN KEY (RequestID) REFERENCES requests(RequestID)
+ALTER TABLE requestitems ADD FOREIGN KEY (RequestID) REFERENCES requests(RequestID);
 
-ALTER TABLE requestitems ADD FOREIGN KEY (ServiceID) REFERENCES services(ServiceID)
+ALTER TABLE requestitems ADD FOREIGN KEY (ServiceID) REFERENCES services(ServiceID);
 
-ALTER TABLE requests ADD FOREIGN KEY (UserID) REFERENCES users(UserID)
+ALTER TABLE requests ADD FOREIGN KEY (UserID) REFERENCES users(UserID);
 
-ALTER TABLE requests ADD FOREIGN KEY (ManagerID) REFERENCES users(UserID)
+ALTER TABLE requests ADD FOREIGN KEY (ManagerID) REFERENCES users(UserID);
 
-ALTER TABLE services ADD FOREIGN KEY (PackageID) REFERENCES packages(PackageID)
+ALTER TABLE services ADD FOREIGN KEY (PackageID) REFERENCES packages(PackageID);
