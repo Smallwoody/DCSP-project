@@ -53,7 +53,7 @@ table td {
                 $newUser->Email = sanitizeString($_REQUEST['email']);
                 $newUser->PasswordToken = SaltPswd(sanitizeString($_REQUEST['password']));
                 $isnewUsersSignedup = $newUser->CreateAccount();
-                
+
                 $_SESSION['FirstName'] = $newUser->FirstName;
                 $_SESSION['LastName'] = $newUser->LastName;
                 $_SESSION['Email'] = $newUser->Email;
@@ -117,11 +117,11 @@ table td {
                 </tr>
                 <tr>
                     <td><label>User Name: </label></td>
-                    <td><input type="text" name="lname" value=<?php echo $newUser->UserName ?>></td>
+                    <td><input type="text" name="username" value=<?php $newUser->UserName ?>></td>
                 </tr>
                 <tr>
                     <td><label>Email: </label></td>
-                    <td><input type="text" name="username" value="<?php echo $newUser->Email; ?>"></td>
+                    <td><input type="text" name="email" value="<?php echo $newUser->Email; ?>"></td>
                 </tr>
                 <tr>
                     <td><label>Password: </label></td>
@@ -139,7 +139,7 @@ table td {
                             echo '<div class="w3-container w3-red">Please fill out all fields</div>';
                         }
                         if($successfulRun){
-                            header('Location: login.php');
+                            header('Location: loginPage.php');
                         }
                     ?>
                 </h5>
@@ -155,5 +155,3 @@ table td {
 <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
     <h1 class="w3-margin w3-xlarge">Quote of the day:  Live Life</h1>
 </div>
-
-
